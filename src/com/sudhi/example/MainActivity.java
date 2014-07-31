@@ -41,8 +41,18 @@ public class MainActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+         	data.add("hello");
 		data.add("hello");
 		data.add("hello");
+		data.add("hello");
+		data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
 		grid = (UIGridView<ViewHolder, String>) findViewById(R.id.StaticGridView);
 		grid.setDatasourse(this);
 		grid.setUiAdapterArray(data);
