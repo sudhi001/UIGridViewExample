@@ -42,6 +42,26 @@ public class MainActivity2 extends Activity {
 		data.add("hello");
 		data.add("hello");
 		data.add("hello");
+		data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+		data.add("hello");
+		data.add("hello");
+		data.add("hello");
+		data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
+                data.add("hello");
 		grid = (UIGridView<ViewHolder, String>) findViewById(R.id.StaticGridView2);
 		grid.setAdapterArray(data);
 	}
