@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements
 
      @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.actionbar_menu, menu);
+        inflater.inflate(R.menu.main, menu);
         SearchManager searchManager = (SearchManager) getActivity()
                 .getSystemService(Context.SEARCH_SERVICE);
         MenuItem searchItem = menu.findItem(R.id.action_search);
