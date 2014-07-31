@@ -19,18 +19,21 @@ package com.sudhi.example;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import android.support.v4.view.MenuItemCompat;
+import android.app.SearchManager;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SearchView.OnQueryTextListener;
 import com.androidhelpline.ui.widgets.UIGridView;
 import com.androidhelpline.ui.widgets.UIGridView.UIGridViewDataSource;
 import com.sudhi.example.MainActivity.ViewHolder;
 
 public class MainActivity extends Activity implements
-		UIGridViewDataSource<ViewHolder, String> {
+		UIGridViewDataSource<ViewHolder, String>,OnQueryTextListener  {
 
 	List<String> data = new ArrayList<String>();
 	private UIGridView<ViewHolder, String> grid;
@@ -58,6 +61,19 @@ public class MainActivity extends Activity implements
 		grid.setUiAdapterArray(data);
 	}
 
+     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.actionbar_menu, menu);
+        SearchManager searchManager = (SearchManager) getActivity()
+                .getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat
+                .getActionView(searchItem);
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(this);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
 	public class ViewHolder {
 		TextView txt;
 
@@ -82,6 +98,29 @@ public class MainActivity extends Activity implements
 
 	}
 
-	
+	  @Override
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            gridView.getUIGridViewAdapter().getFilter().filter("");
+            gridView.clearTextFilter();
+        } else {
+            gridView.getUIGridViewAdapter().getFilter().filter(newText.toString());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String arg0) {
+        return false;
+    }
+
+    @Override
+    public void onFilter(List<AppointmentDTO> mList, String item,CharSequence constraint) {
+        if (item.toLowerCase(Locale.getDefault())
+                .contains(constraint)) {
+            mList.add(item);
+        }
+        
+    }
 
 }
